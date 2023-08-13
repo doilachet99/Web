@@ -142,3 +142,5 @@ D:\WEB\Web\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache
 D:\WEB\Web\Web\obj\Debug\Web.csproj.CopyComplete
 D:\WEB\Web\Web\obj\Debug\Web.dll
 D:\WEB\Web\Web\obj\Debug\Web.pdb
+D:\WEB\Web\Web\bin\EntityFramework.dll
+D:\WEB\Web\Web\bin\EntityFramework.xml

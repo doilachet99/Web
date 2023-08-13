@@ -43,7 +43,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -1535,14 +1541,55 @@
     <Content Include="lib\jquery.appear\jquery.appear.min.js" />
     <Content Include="lib\jquery.lazyload\jquery.lazyload.min.js" />
     <Content Include="lib\jquery\jquery.min.js" />
+    <Content Include="Models\Molla.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Molla.edmx</DependentUpon>
+      <LastGenOutput>Molla.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Molla.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Molla.edmx</DependentUpon>
+      <LastGenOutput>Molla.cs</LastGenOutput>
+    </Content>
     <Content Include="popup\quickView.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>Molla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>Molla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Member.cs">
+      <DependentUpon>Molla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Molla.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Molla.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Molla.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Molla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Molla.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Molla.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News.cs">
+      <DependentUpon>Molla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News_Category.cs">
+      <DependentUpon>Molla.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1563,11 +1610,19 @@
     <Content Include="assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.ttf" />
     <Content Include="assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.woff" />
     <Content Include="assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.woff2" />
+    <EntityDeploy Include="Models\Molla.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Molla.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Molla.edmx.diagram">
+      <DependentUpon>Molla.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Molla02.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1577,10 +1632,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="popup\assets\images\demos\demo-6\products\" />
     <Folder Include="popup\assets\images\popup\quickView\" />
     <Folder Include="popup\popup\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
