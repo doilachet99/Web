@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Molla02.cshtml";
 }
+@model List<Web.Views.News.CategoryViewModel>
+
 
 <main class="main">
     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
@@ -300,23 +302,31 @@
                         <div class="widget widget-cats">
                             <h3 class="widget-title">Chuyên mục</h3><!-- End .widget-title -->
                             <ul>
-                                @{
-                                    var categories = ViewBag.Categories as List<Web.Models.Category>;
-                                    if (categories != null)
-                                    {
-                                        foreach (var item in categories)
+                                @*@{
+                                        var categories= (List<dynamic>)ViewBag.Categories; ;
+                                        if (categories != null)
                                         {
-                                            if (item.GetType().GetProperty("Id") != null &&
-                                                item.GetType().GetProperty("Name") != null &&
-                                                item.GetType().GetProperty("Total") != null)
+                                            foreach (var item in categories)
                                             {
-                                                <li>
-                                                    <a href="@Url.Action("Index", "News", new { CategoriesId = item.Id })">@item.Name<span>@item.Total</span></a>
-                                                </li>
+                                                if (item.GetType().GetProperty("Id") != null &&
+                                                    item.GetType().GetProperty("Name") != null &&
+                                                    item.GetType().GetProperty("Total") != null)
+                                                {
+                                                    <li>
+                                                        <a href="@Url.Action("Index", "News", new { CategoriesId = item[0] })">@item[1]<span>@item[2]</span></a>
+                                                    </li>
+                                                }
                                             }
                                         }
-                                    }
+                                    }*@
+
+                                @foreach (var item in Model)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Index", "News", new { CategoriesId = item.Id })">@item.Name<span>@item.Total</span></a>
+                                    </li>
                                 }
+
                             </ul>
 
 
