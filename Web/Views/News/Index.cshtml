@@ -321,7 +321,7 @@
                                     }*@
 
                                 @foreach (var item in Model)
-                                {
+                                {                                    
                                     <li>
                                         <a href="@Url.Action("Index", "News", new { CategoriesId = item.Id })">@item.Name<span>@item.Total</span></a>
                                     </li>
